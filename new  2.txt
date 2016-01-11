@@ -1,0 +1,38 @@
+1. enquiry: 
+
+user: nayan
+pass: 12345678
+[12:25:33 PM] ashik rahman: Call to Masud, no answer.
+ 
+2. Survey:
+
+user: saiful
+pass: 12345678
+  
+user: mrinal
+pass: 12345678
+  
+user: mahakim
+pass: 12345678
+
+5: ClientConfirm ( proposal send, revise proposal, work order get)
+
+user: nayan
+pass: 12345678
+
+6: Installation (Physical). (in this stage, have to create requisition form)
+
+user: saiful
+pass: 12345678
+ 
+7: Product Out (Store). (in this stage store dept. will checkout the requisition items)
+
+user: rafiq
+pass: 12345678
+ 
+8: Billing: in this stage billiing dept will create bill.
+
+user: iqbal
+pass: 12345678
+
+9: Technical: in this stage technical dept will create IP, GW, SM, DNS1, DN2 and MRTG info

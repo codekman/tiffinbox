@@ -1,0 +1,9 @@
+#CardBody{
+	font-size: 12px;
+	margin: 0 auto;
+}
+
+#CardBody, #CardBody>.span5, #CardBody>.span3, #CardBody>.span2, #CardBody>h3, #CardBody>hr{
+	
+	margin:0px;
+}
