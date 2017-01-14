@@ -50,9 +50,9 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';//vTV-QGG7T48@
-$db['default']['database'] = 'school_manage';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['password'] = '002';//vTV-QGG7T48@
+$db['default']['database'] = 'tiffinbox';
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

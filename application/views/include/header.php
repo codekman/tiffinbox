@@ -18,7 +18,7 @@
 		<![endif]-->
 
 		<!--page specific plugin styles-->
-		
+
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui-1.10.3.custom.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/chosen.css" />
@@ -48,6 +48,35 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/select2.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-editable.css" />
  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--basic scripts-->
+
+	<!--[if !IE]>-->
+
+
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+	<!--[if !IE]>-->
+
+	<script type="text/javascript">
+		window.jQuery || document.write("<script src='<?php echo base_url();?>assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+	</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+<script type="text/javascript">
+window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+	<script type="text/javascript">
+		if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
 	</head>
 
 	<body>
@@ -62,25 +91,25 @@
 					</a><!--/.brand-->
 
 					<ul class="nav ace-nav pull-right">
-						 
 
-						 
 
-				 
+
+
+
 
 						<li class="light-blue">
 							<!--a data-toggle="dropdown" href="#" class="dropdown-toggle"-->
 							<div class="dropdown-toggle">
 								<img class="nav-user-photo" src="<?php echo base_url(); ?>assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
-									 
-									<?php 
+
+									<?php
 									//take user data from session:
 									$user_data = $this->session->userdata('is_logged');
 									echo $user_data['user_name'];
-									echo '<br/><a href="'.base_url().'welcome/logout">Logout</a>'; 
+									echo '<br/><a href="'.base_url().'welcome/logout">Logout</a>';
 									?>
-									
+
 								</span>
 							</div>
 							<!--i class="icon-caret-down"></i-->
@@ -164,60 +193,60 @@
 							<span class="menu-text"> Dashboard </span>
 						</a>
 					</li>
-					 
+
 					<li <?php echo (($this->uri->segment(1) =="students") && (($this->uri->segment(2) =="create" ) || ($this->uri->segment(2) =="update" ) || ($this->uri->segment(2) =="" ) || ($this->uri->segment(2) =="index" ))) ? 'class="active"':'';?>>
 						<a href="<?php echo base_url(); ?>students">
 						<i class="icon-group"></i>
 							<span class="menu-text"> Student  </span>
 						</a>
 					</li>
-					
+
 					<li <?php echo ($this->uri->segment(1) =="attendance") ? 'class="active"':'';?> >
 						<a href="<?php echo base_url(); ?>attendance/index">
 							<i class="icon-dashboard"></i>
 							<span class="menu-text"> Student Attendance </span>
 						</a>
 					</li>
-					
-					<li <?php echo (($this->uri->segment(1) =="employee") && ($this->uri->segment(2) =="index"))? 'class="active"':'';?>>	
+
+					<li <?php echo (($this->uri->segment(1) =="employee") && ($this->uri->segment(2) =="index"))? 'class="active"':'';?>>
 						<a href="<?php echo base_url(); ?>employee/index">
 							<i class="icon-group"></i>
 						 Staff/Teacher
 						</a>
-					</li> 
-		 
-						 
+					</li>
+
+
 			 		<li <?php echo (($this->uri->segment(1) =="employee") && (($this->uri->segment(2) =="departments") || ($this->uri->segment(2) =="createdepartment") || ($this->uri->segment(2) =="updatedepartment")))? 'class="active"':'';?>>
 						<a href="<?php echo base_url();?>employee/departments">
 							<i class="icon-sitemap green"></i>
 							Departments
 						</a>
-					</li>	
+					</li>
 			 		<li <?php echo (($this->uri->segment(1) =="employee") && (($this->uri->segment(2) =="designations") || ($this->uri->segment(2) =="createdesignation") || ($this->uri->segment(2) =="updatedesignations")))? 'class="active"':'';?>>
 						<a href="<?php echo base_url();?>employee/designations">
 							<i class="icon-bookmark green"></i>
 							Designations
 						</a>
-					</li>	
-								
-							 
-					 
-					 
+					</li>
+
+
+
+
 					<li <?php echo ($this->uri->segment(1) =="subjects")? 'class="active"':'';?>>
 						<a href="<?php echo base_url(); ?>subjects">
-							<i class="icon-book"></i> Subject 
+							<i class="icon-book"></i> Subject
 						</a>
 					</li>
-					
-					 	  
+
+
 					<li <?php echo ($this->uri->segment(1) =="classes")? 'class="active"':'';?>>
 						<a href="<?php echo base_url();?>classes">
 							<i class="icon-double-angle-right"></i>
 							Classes
 						</a>
-						 
+
 					</li>
- 
+
 					<li <?php echo ($this->uri->segment(1) =="sections")? 'class="active"':'';?>>
 						<a href="<?php echo base_url()?>sections">
 							<i class="icon-double-angle-right"></i>
@@ -230,8 +259,8 @@
 							Class Routin
 						</a>
 					</li>
-							
-						 
+
+
 					<li <?php echo ($this->uri->segment(1) =="exams" || $this->uri->segment(1) =="examresult" || $this->uri->segment(1) =="examgrades" )? 'class="active open"':'';?>>
 						<a href="#" class="dropdown-toggle">
 							<i class="icon-edit"></i>
@@ -257,7 +286,7 @@
 									<i class=" icon-certificate"></i>
 									<span class="menu-text">Marks &amp; Result</span>
 								</a>
-								 
+
 							</li>
 						</ul>
 					</li>
@@ -286,7 +315,7 @@
 									<i class=" icon-certificate"></i>
 									<span class="menu-text">Due Report</span>
 								</a>
-								 
+
 							</li>
 						</ul>
 					</li>
@@ -315,7 +344,7 @@
 									<i class=" icon-certificate"></i>
 									<span class="menu-text">Payments</span>
 								</a>
-								 
+
 							</li>
 						</ul>
 					</li>
@@ -365,19 +394,19 @@
 							</li>
 						</ul>
 					</li>
-					
-					
+
+
 					<li <?php echo ($this->uri->segment(1) =="setting") ? 'class="active"':'';?> >
 						<a href="<?php echo base_url(); ?>setting/index">
 							<i class="icon-cogs"></i>
 							<span class="menu-text"> Setting </span>
 						</a>
 					</li>
-					 
-					  
+
+
 						</ul>
 					</li>
-					
+
 				</ul><!--/.nav-list-->
 
 				<div class="sidebar-collapse" id="sidebar-collapse">
@@ -403,11 +432,11 @@
 							<span class="divider">
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
-						<?php endif; ?>	
+						<?php endif; ?>
 						</li>
-					
+
 						<li class="active"><?php echo $this->uri->segment(2);?></li>
-						
+
 					</ul><!--.breadcrumb-->
 
 					<div class="nav-search" id="nav-search">

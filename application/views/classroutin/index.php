@@ -1,27 +1,27 @@
 <script>
 function confirmdelete(){
 	var conf = confirm("Are you sure to delete this Class?");
-	 
-	if(conf==true){ 
+
+	if(conf==true){
 	}else{
 		event.preventDefault();
 	}
-	
+
 }
 
 </script>
- 
+
 		<div class="page-content">
 			<div class="row-fluid">
 				<div class="span12 page-header position-relative">
 					<!--PAGE CONTENT BEGINS-->
-					
+
 					<a href="<?php echo base_url();?>classroutin/create">
 						<button class="btn btn-primary pull-right">
 							<i class="icon-beaker bigger-125"></i> Create New Class Routin
 						</button>
-					</a>	
-		 
+					</a>
+
 					<h1>
 						<i class="icon-hand-right icon-animated-hand-pointer blue"></i> Classes Routins
 						<small><i class="icon-double-angle-right"></i></small>
@@ -39,11 +39,11 @@ function confirmdelete(){
 								<i class="icon-ok bigger-120 blue"></i> <?php echo $this->session->flashdata('status_right'); ?>
 							</div>
 						<?php endif; ?>
-						
+
 						<!--check any alert message or not -->
-						
+
 						<?php if($this->session->flashdata('status_wrong')): ?>
-						 <!--Print Wrong Alert Message: -->		
+						 <!--Print Wrong Alert Message: -->
 							<div class="alert span12 alert-danger no-margin">
 								<button type="button" class="close" data-dismiss="alert">
 									<i class="icon-remove red"></i>
@@ -51,34 +51,35 @@ function confirmdelete(){
 								<div class="span1"><i class="icon-warning-sign icon-2x red"></i></div>
 								<div class="span6"><?php echo $this->session->flashdata('status_wrong'); ?></div>
 							</div>
-						<?php endif; ?>	
-						
+						<?php endif; ?>
+
 						<!--------------End of Message---------------------------------->
-						
+
 						<div class="row-fluid">
 							<div class="table-header">
 								Results for "Latest Registered Classes"
 							</div>
-								 
+
 							<div class="tabbable tabs-left">
 								<ul class="nav nav-tabs" id="myTab3">
-									
+
 									<?php
+									$class = [];
 									foreach ($classes->result() as   $value) {
 										$class[$value->Id] = $value->ClassName;
-									} 
+									}
 									$dayNames = array(
 											'',
 										    'Sunday',
-										    'Monday', 
-										    'Tuesday', 
-										    'Wednesday', 
-										    'Thursday', 
-										    'Saturday', 
+										    'Monday',
+										    'Tuesday',
+										    'Wednesday',
+										    'Thursday',
+										    'Saturday',
 										    'Friday',
 									);
-											 
-									$schedules = array(); 
+
+									$schedules = array();
 									foreach($class as $key=>$row):?>
 										<li class="<?php echo ($key == 1) ? 'active' : '' ; ?>">
 											<a data-toggle="tab" href="#<?php echo $key+1; ?>">
@@ -88,23 +89,23 @@ function confirmdelete(){
 										</li>
 									<?php endforeach; ?>
 								</ul>
-								
+
 								<div class="tab-content">
 								<?php foreach($class as $key=>$row):
-										 
+
 								?>
 										<div id="<?php echo $key+1; ?>" class="tab-pane in <?php echo ($key == 1) ? 'active' : '' ; ?>">
 											<table class="table table-striped table-bordered table-hover">
-											 
+
 											 	 <tr>
 											 	 	<?php foreach($dayNames as $day){ ?>
 											 	 		<td><?php echo $day; ?></td>
 											 	 	<?php } ?>
 											 	 </tr>
-											 	 		
+
 										 	 		<?php
-										 	 		
-										 	 		#publish rutine daywise 
+
+										 	 		#publish rutine daywise
 										 	 		foreach($routins->result() as $sub ):
 														if($key == $sub->ClassId ){
 															echo '<tr><td>&nbsp;</td>';
@@ -144,23 +145,23 @@ function confirmdelete(){
 												 	 			echo '<td>&nbsp;</td>';
 												 	 		}
 															echo '</tr>';
-														}		
+														}
 										 	 		?>
-											 	 	<?php endforeach; ?>		 
-											 	 	
-											 	 	
-											 	 
-											  
+											 	 	<?php endforeach; ?>
+
+
+
+
 											</table>
 										</div>
-								<?php endforeach; ?>	
+								<?php endforeach; ?>
 								</div>
 							 </div>
-							</div> 
+							</div>
 						</div>
 		 			</div><!--/.span-->
 				</div><!--/.row-fluid-->
-		 
+
 					<!--PAGE CONTENT ENDS-->
 		</div><!--/.span-->
 	</div><!--/.row-fluid-->
