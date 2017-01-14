@@ -1,40 +1,40 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Accounting extends CI_Controller {
-	
+
 	public function __construct(){
 		parent:: __construct();
 		$this->load->helper('form');
-		$this->load->library(array('session','pagination','form_validation')); 
+		$this->load->library(array('session','pagination','form_validation'));
 		$this->load->model('accounting_model');
 	}
-	
+
 	public function expenses(){
-   
-		$data['expenses'] = $this->db->get('expenses'); 
+
+		$data['expenses'] = $this->db->get('expenses');
 		$data['expense_categories'] =  $this->db->get('expense_category');
 		$data['page_title'] = 'Expenses :: School Management System';
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/expenses');
-		$this->load->view('include/footer');	
-		
+		$this->load->view('include/footer');
+
 	}
-	
+
 	public function create_expense(){
-		
+
 		$data['expense_categories'] =  $this->db->get('expense_category');
 		$data['page_title'] = 'Create Expense :: School Management System';
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/create_expense');
-		$this->load->view('include/footer');	 
+		$this->load->view('include/footer');
 	}
-	
+
 	public function insert_expense(){
 		$insert_data = $this->input->post();
-		// validation check forinserting designation 
+		// validation check forinserting designation
 		$this->form_validation->set_rules('amount', 'Expense Amount', 'required');
 		$this->form_validation->set_rules('title', 'Expense Title', 'required');
-		 
+
 		//check is form data valid of not
 	 	if ($this->form_validation->run() == FALSE):
 			$this->session->set_flashdata('status_wrong',validation_errors() );
@@ -48,10 +48,10 @@ class Accounting extends CI_Controller {
 				$this->session->set_flashdata('status_wrong', 'Sorry system is unable to preserve this info!');
 				redirect('accounting/expenses');
 			endif;
-		endif;	
-		
+		endif;
+
 	}
-	
+
 	public function update_expense($id){
 		$data['expense'] = $this->db->get_where('expenses', array('Id'=>$id));
 		$data['expense_categories'] =  $this->db->get('expense_category');
@@ -59,13 +59,13 @@ class Accounting extends CI_Controller {
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/update_expense');
 		$this->load->view('include/footer');
-	}	
+	}
 	public function edit_expense(){
 			$update_data = $this->input->post();
-			// validation check forinserting designation 
+			// validation check forinserting designation
 			$this->form_validation->set_rules('amount', 'Expense Amount', 'required');
 			$this->form_validation->set_rules('title', 'Expense Title', 'required');
-		 
+
 		 	if ($this->form_validation->run() == FALSE):
 				$this->session->set_flashdata('status_wrong',validation_errors() );
 				$this->update_expense($update_data['id']);
@@ -79,10 +79,10 @@ class Accounting extends CI_Controller {
 					//$this->designations();
 					redirect('accounting/expenses');
 				endif;
-			endif;	
-			
+			endif;
+
 		}
-	
+
 	public function delete_expense(){
 		$id = $this->input->post('expense_id');
 		if($this->accounting_model->deleteExpense($id)):
@@ -90,31 +90,31 @@ class Accounting extends CI_Controller {
 	  else:
 	  	echo 'Sorry! Systen is Unable to Deleted Expense information!';
 	  endif;
-		
+
 	}
 	public function expense_categories(){
-				
+
 			$data['category'] = $this->db->get_where('expense_category', array('status'=>1));
 			$data['page_title'] = 'Expense Category :: School Management System';
 			$this->load->view('include/header',$data);
 			$this->load->view('accounting/expense_categories');
-			$this->load->view('include/footer'); 
+			$this->load->view('include/footer');
 	}
-	public function createcategory(){ 
-		 
+	public function createcategory(){
+
 		$data['page_title'] = 'Expense Category :: School Management System';
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/create_expense_category');
-		$this->load->view('include/footer');	
-		
+		$this->load->view('include/footer');
+
 	}
-	
+
 	public function insertcategory(){
 			$insert_data = $this->input->post();
-			 
-			// validation check forinserting designation 
+
+			// validation check forinserting designation
 			$this->form_validation->set_rules('categoryName', 'Category Name', 'required');
-		  
+
 			//check is form data valid of not
 		 	if ($this->form_validation->run() == FALSE):
 				$this->session->set_flashdata('status_wrong',validation_errors() );
@@ -127,24 +127,24 @@ class Accounting extends CI_Controller {
 				else:
 					$this->session->set_flashdata('status_wrong', 'Sorry system is unable to preserve this info!');
 					//$this->designations();
-					redirect('accounting/categories');
+					redirect('accounting/expense_categories');
 				endif;
-			endif;	
-			
+			endif;
+
 		}
-		
+
 	public function update_expensecategory($id){
 		$data['category'] = $this->accounting_model->getexpenseCategoryById($id);
 		$data['page_title'] = 'Update expense Category :: School Management System';
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/update_expense_category');
 		$this->load->view('include/footer');
-	}	
+	}
 	public function edit_expensecategory(){
 			$update_data = $this->input->post();
-			 // validation check forinserting designation 
+			 // validation check forinserting designation
 			$this->form_validation->set_rules('categoryName', 'Category Name', 'required');
-		  
+
 			//check is form data valid of not
 		 	if ($this->form_validation->run() == FALSE):
 				$this->session->set_flashdata('status_wrong',validation_errors() );
@@ -159,10 +159,10 @@ class Accounting extends CI_Controller {
 					//$this->designations();
 					redirect('accounting/expense_categories');
 				endif;
-			endif;	
-			
+			endif;
+
 		}
-		
+
 	public function delete_expensecategory(){
 		$id = $this->input->post('category_id');
 		if($this->accounting_model->deleteexpenseCategory($id)):
@@ -170,12 +170,12 @@ class Accounting extends CI_Controller {
 	  else:
 	  	echo 'Sorry! Systen is Unable to Deleted Category information!';
 	  endif;
-		
+
 	}
 	#payment part:
-	
+
 	public function payments(){
-		$data['payments'] = $this->accounting_model->getPayments(); 
+		$data['payments'] = $this->accounting_model->getPayments();
  		$data['page_title'] = 'Payments :: School Management System';
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/payments');
@@ -186,11 +186,11 @@ class Accounting extends CI_Controller {
 		$this->load->view('include/header',$data);
 		$this->load->view('accounting/create_payment');
 		$this->load->view('include/footer');
-	 
+
 	}
 	public function insertpayment(){
 		$insert_data = $this->input->post();
-			// validation check forinserting designation 
+			// validation check forinserting designation
 			$this->form_validation->set_rules('paymentTitle', 'Payment Title', 'required');
 			$this->form_validation->set_rules('paymentType', 'Payment Type', 'required');
 			if($insert_data['paymentType']==1){
@@ -216,7 +216,7 @@ class Accounting extends CI_Controller {
 					//$this->designations();
 					redirect('accounting/create_payment');
 				endif;
-			endif;	
+			endif;
 
 	}
 	public function update_payment($id){
@@ -229,7 +229,7 @@ class Accounting extends CI_Controller {
 	}
 	public function editpayment(){
 		$update_data = $this->input->post();
-			// validation check forinserting designation 
+			// validation check forinserting designation
 			$this->form_validation->set_rules('paymentTitle', 'Payment Title', 'required');
 			$this->form_validation->set_rules('paymentType', 'Payment Type', 'required');
 			if($update_data['paymentType']==1){
@@ -255,8 +255,8 @@ class Accounting extends CI_Controller {
 					//$this->designations();
 					redirect('accounting/update_payment/'.$update_data['id']);
 				endif;
-			endif;	
-	
+			endif;
+
 		}
 	public function takenewpayment(){
 		$data = $this->input->post();
@@ -266,8 +266,8 @@ class Accounting extends CI_Controller {
 	}
 	public function deletePayment(){
 		$paymentId = $this->input->post('payment_id');
-		$this->db->delete('payment', array('Id' => $paymentId));  
-		$this->db->delete('payment_history', array('paymentId' => $paymentId));  
+		$this->db->delete('payment', array('Id' => $paymentId));
+		$this->db->delete('payment_history', array('paymentId' => $paymentId));
 		redirect('accounting/payments');
 	}
 	#--ajax response:
@@ -282,12 +282,12 @@ class Accounting extends CI_Controller {
 		$this->db->join('studentdetails', 'studentdetails.Id=payment.studentId');
 		$this->db->join('studentinfo', 'studentdetails.Id=studentinfo.StdDetailsId');
 		$this->db->join('classes', 'classes.Id=payment.classId');
-		$this->db->where('payment.Id',$paymentId); 
-		$data['payment'] = $this->db->get();		 
+		$this->db->where('payment.Id',$paymentId);
+		$data['payment'] = $this->db->get();
 		$html = $this->load->view('accounting/template/invoice',$data);;
 		echo $html;
-	} 
-	
+	}
+
 	public function getStudentByClassId(){
 		$classId = $this->input->post('class_id');
 		$this->db->select('studentdetails.Id,studentdetails.StdName, studentinfo.StdDetailsId,studentinfo.StdRollNo, classes.ClassName');
@@ -309,19 +309,19 @@ class Accounting extends CI_Controller {
 			Class <span class="red">* </span>:
 		</label><div class="controls" id="Classdiv">';
 		 echo form_dropdown('classId', $options,'','id="classNamediv"');
-		 echo '</div> ';								  
+		 echo '</div> ';
 	}
-	
+
 	public function getPaymentForm(){
 		$paymentId = $this->input->post('payment_id');
-		$this->db->select('payment.Id,payment.paymentTitle,payment.paymentDetails,payment.createdDate,payment.totalAmount,payment.status, 
+		$this->db->select('payment.Id,payment.paymentTitle,payment.paymentDetails,payment.createdDate,payment.totalAmount,payment.status,
 		payment_history.paidAmount, payment_history.medium,payment_history.paymentDate');
 		$this->db->from('payment');
 		$this->db->join('payment_history', 'payment.Id=payment_history.paymentId');
-		$this->db->where('payment.Id',$paymentId); 
-		$data['payment_history'] = $this->db->get();		
+		$this->db->where('payment.Id',$paymentId);
+		$data['payment_history'] = $this->db->get();
 		$html = $this->load->view('accounting/template/takepayment',$data);;
 		echo $html;
 	}
-	
+
 }
